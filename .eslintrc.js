@@ -9,7 +9,8 @@ module.exports = {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly",
     it: "readonly",
-    describe: "readonly"
+    describe: "readonly",
+    expect: "readonly"
   },
   parserOptions: {
     ecmaFeatures: {
