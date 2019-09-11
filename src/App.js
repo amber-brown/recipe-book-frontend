@@ -1,24 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import "./App.scss";
 
-import RecipeCard from "./components/RecipeCard";
+import RecipeList from "./components/RecipeList";
 
 class App extends React.Component {
   render() {
     console.log(this.props);
     return (
       <div className="App">
-        <div className="recipe-list">
-          <h2>Recipes</h2>
-          {this.props.recipes.map((recipe, i) => (
-            <RecipeCard key={i} recipe={recipe} />
-          ))}
-        </div>
+        <RecipeList recipes={this.props.recipes} />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  recipes: PropTypes.arrayOf(PropTypes.object)
+};
 
 /*
 mapStateToProps - given the state of the store, can pull out data from
