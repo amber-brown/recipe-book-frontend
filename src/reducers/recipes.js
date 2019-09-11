@@ -1,7 +1,8 @@
-import Recipes from "../recipes.json";
-
-const recipes = (state = Recipes, action) => {
+const recipes = (state = [], action) => {
   switch (action.type) {
+    case "GET_ALL_RECIPES_SUCCESS":
+      return action.recipes;
+
     default:
       return state;
   }

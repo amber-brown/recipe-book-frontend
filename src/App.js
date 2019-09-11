@@ -5,8 +5,13 @@ import PropTypes from "prop-types";
 import "./App.scss";
 
 import RecipeList from "./components/RecipeList";
+import { getAllRecipes } from "./actions";
 
 class App extends React.Component {
+  componentDidMount() {
+    this.props.getAllRecipes();
+  }
+
   render() {
     console.log(this.props);
     return (
@@ -18,7 +23,8 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  recipes: PropTypes.arrayOf(PropTypes.object)
+  recipes: PropTypes.arrayOf(PropTypes.object),
+  getAllRecipes: PropTypes.func
 };
 
 /*
@@ -30,7 +36,18 @@ const mapStateToProps = state => ({
 });
 
 /*
+mapDispatchToProps provides access to the dispatcher for sending actions
+through Redux.
+*/
+const mapDispatchToProps = dispatch => ({
+  getAllRecipes: () => dispatch(getAllRecipes())
+});
+
+/*
 connect() runs the above function and gives the result to App -
 It coonects the app to the store.
 */
-export default connect(mapStateToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
