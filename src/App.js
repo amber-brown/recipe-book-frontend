@@ -1,26 +1,35 @@
 import React from "react";
-import logo from "./logo.svg";
+import { connect } from "react-redux";
 import "./App.scss";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import RecipeCard from "./components/RecipeCard";
+
+class App extends React.Component {
+  render() {
+    console.log(this.props);
+    return (
+      <div className="App">
+        <div className="recipe-list">
+          <h2>Recipes</h2>
+          {this.props.recipes.map((recipe, i) => (
+            <RecipeCard key={i} recipe={recipe} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+/*
+mapStateToProps - given the state of the store, can pull out data from
+the store and give it as props to your component.
+*/
+const mapStateToProps = state => ({
+  recipes: state.recipes
+});
+
+/*
+connect() runs the above function and gives the result to App -
+It coonects the app to the store.
+*/
+export default connect(mapStateToProps)(App);

@@ -12,7 +12,9 @@ class Index extends React.Component {
     const { store } = this.props;
     return (
       <Provider store={store}>
-        <App />
+        <div>
+          <App />
+        </div>
       </Provider>
     );
   }

@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Thai Green Curry",
+    "preparation_time": 90,
+    "servings": 6,
+    "author": "Amber Brown",
+    "ingredients": [
+      {
+        "name": "rice",
+        "quantity": "600",
+        "unit": "g"
+      },
+      {
+        "name": "coconut milk",
+        "quantity": "400",
+        "unit": "ml"
+      },
+      {
+        "name": "green chilli",
+        "quantity": "1",
+        "unit": ""
+      },
+      {
+        "name": "chicken breast",
+        "quantity": "400",
+        "unit": "g"
+      }
+    ],
+    "image": "/images/recipes/thai_green_curry.jpg"
+  },
+  {
+    "name": "Thai Red Curry",
+    "preparation_time": 80,
+    "servings": 4,
+    "author": "Amber Brown",
+    "ingredients": [
+      {
+        "name": "rice",
+        "quantity": "600",
+        "unit": "g"
+      },
+      {
+        "name": "coconut milk",
+        "quantity": "400",
+        "unit": "ml"
+      },
+      {
+        "name": "red chilli",
+        "quantity": "1",
+        "unit": ""
+      },
+      {
+        "name": "chicken breast",
+        "quantity": "400",
+        "unit": "g"
+      }
+    ],
+    "image": "/images/recipes/thai_red_curry.jpg"
+  }
+]

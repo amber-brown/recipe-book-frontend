@@ -1,0 +1,46 @@
+.recipe-card {
+  border-radius: 10px;
+  border: 5px solid #ffffff;
+
+  background-color: #ccc;
+  background-size: cover;
+
+  margin: 20px;
+
+  max-width: 400px;
+  height: 250px;
+
+  -webkit-box-shadow: 0 8px 6px -6px black;
+  -moz-box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 8px 6px -6px black;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+
+  h2,
+  p {
+    color: #ffffff;
+  }
+
+  .information {
+    width: 100%;
+    background-image: linear-gradient(transparent, black);
+    padding: 0 20px;
+    border-radius: 10px;
+
+    h2 {
+      text-align: right;
+      margin-bottom: 0;
+    }
+  }
+
+  .sub-information {
+    display: flex;
+    justify-content: flex-end;
+
+    > p {
+      padding-left: 15px;
+    }
+  }
+}
