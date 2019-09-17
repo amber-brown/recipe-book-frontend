@@ -15,15 +15,15 @@ export default class RecipeCard extends React.Component {
         style={{ backgroundImage: `url(${recipe.image})` }}
       >
         <div className="information">
-          <h2>{recipe.name}</h2>
+          <h2>{recipe.title}</h2>
           <div className="sub-information">
             <p>
               <FontAwesomeIcon icon={faStopwatch} className="icon" />
-              {recipe.preparation_time} minutes
+              {recipe.time.preparation} minutes
             </p>
             <p>
               <FontAwesomeIcon icon={faUserFriends} className="icon" />
-              Servings: {recipe.servings}
+              Serves: {recipe.serves}
             </p>
           </div>
         </div>
