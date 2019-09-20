@@ -8,7 +8,7 @@ import "./RecipeCard.scss";
 export default class RecipeCard extends React.Component {
   render() {
     const { recipe } = this.props;
-    console.log(recipe);
+
     return (
       <div
         className="recipe-card"
