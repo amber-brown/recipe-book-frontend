@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Palanquin|Palanquin+Dark:600|Roboto:400,700&display=swap");
+
+$heading: "Palanquin Dark", sans-serif;
+$sub-heading: "Palanquin", sans-serif;
+$body: "Roboto", sans-serif;
+
+$heading-color: #282828;
+$body-color: #323232;
+
+h1,
+h2 {
+  font-family: $heading;
+  color: $heading-color;
+}
+
+h3,
+h4 {
+  font-family: $sub-heading;
+  color: $heading-color;
+}
+
+h5,
+h6,
+p {
+  font-family: $body;
+  color: $body-color;
+}
