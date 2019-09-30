@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import classNames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,7 +14,9 @@ import "./RecipeDetails.scss";
 import Ingredients from "../Ingredients";
 import Method from "../Method";
 
-export default class RecipeDetails extends React.Component {
+import { getRecipe } from "../../actions";
+
+class RecipeDetails extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,6 +28,7 @@ export default class RecipeDetails extends React.Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.handleResize);
+    this.props.getRecipe(this.props.recipeId);
   }
 
   componentWillUnmount() {
@@ -64,6 +68,10 @@ export default class RecipeDetails extends React.Component {
     const methodClasses = classNames("tab", {
       active: this.state.openTab === "METHOD"
     });
+
+    if (!recipe) {
+      return <p>Loading</p>;
+    }
     return (
       <div className="recipeDetails">
         <div
@@ -112,5 +120,32 @@ export default class RecipeDetails extends React.Component {
 }
 
 RecipeDetails.propTypes = {
-  recipe: PropTypes.object
+  recipe: PropTypes.object,
+  getRecipe: PropTypes.func,
+  recipeId: PropTypes.string
 };
+
+/*
+mapStateToProps - given the state of the store, can pull out data from
+the store and give it as props to your component.
+*/
+const mapStateToProps = (state, ownProps) => ({
+  recipe: state.recipes.find(element => element._id === ownProps.recipeId)
+});
+
+/*
+mapDispatchToProps provides access to the dispatcher for sending actions
+through Redux.
+*/
+const mapDispatchToProps = dispatch => ({
+  getRecipe: id => dispatch(getRecipe(id))
+});
+
+/*
+connect() runs the above function and gives the result to App -
+It coonects the app to the store.
+*/
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RecipeDetails);
