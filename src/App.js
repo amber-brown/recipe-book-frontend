@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import "./App.scss";
+import "normalize.css";
 
 import RecipeList from "./components/RecipeList";
+import RecipeDetails from "./components/RecipeDetails";
 import { getAllRecipes } from "./actions";
 
 class App extends React.Component {
@@ -13,10 +16,28 @@ class App extends React.Component {
   }
 
   render() {
+    const { recipes } = this.props;
+
     return (
-      <div className="App">
-        <RecipeList recipes={this.props.recipes} />
-      </div>
+      <Router>
+        <div className="App">
+          <Route
+            exact={true}
+            path="/"
+            render={() => <RecipeList recipes={recipes} />}
+          />
+          {recipes.length && (
+            <Route
+              path="/recipe/:recipeId"
+              render={({ match }) => (
+                <RecipeDetails
+                  recipe={recipes.find(i => i._id === match.params.recipeId)}
+                />
+              )}
+            />
+          )}
+        </div>
+      </Router>
     );
   }
 }

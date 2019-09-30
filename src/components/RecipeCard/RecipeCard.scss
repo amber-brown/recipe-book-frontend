@@ -2,6 +2,7 @@
   border-radius: 10px;
 
   background-color: #ccc;
+  background-position: center;
   background-size: cover;
 
   height: 250px;
@@ -19,20 +20,17 @@
     color: #ffffff;
   }
 
-  p {
-    font-size: 14px;
-  }
-
   .information {
     width: 100%;
     background-image: linear-gradient(transparent, black);
-    padding: 0 20px;
+    padding: 10px 20px;
     border-radius: 10px;
 
     h2 {
       text-align: right;
+      text-transform: capitalize;
       margin-bottom: 0;
-      font-size: 30px;
+      font-size: 24px;
       line-height: 32px;
     }
   }
@@ -43,12 +41,11 @@
 
     > p {
       padding-left: 15px;
+      margin: 10px 0;
     }
 
     .icon {
       padding-right: 5px;
-      padding-bottom: 1px;
-      font-size: 12px;
     }
   }
 }
