@@ -18,7 +18,6 @@ export const getAllRecipes = function* getAllRecipes() {
 };
 
 export const getRecipe = function* getRecipe(action) {
-  console.log(action);
   try {
     const res = yield call(fetch, `http://localhost:4000/recipes/${action.id}`);
     const data = yield call([res, "json"]);
