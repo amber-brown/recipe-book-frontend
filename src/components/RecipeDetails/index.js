@@ -22,7 +22,9 @@ class RecipeDetails extends React.Component {
 
     this.state = {
       openTab: "INGREDIENTS",
-      mediaQuery: window.matchMedia("(min-width: 1024px)")
+      mediaQuery: this.matchMediaExists()
+        ? window.matchMedia("(min-width: 1024px)")
+        : {}
     };
   }
 
@@ -36,8 +38,14 @@ class RecipeDetails extends React.Component {
   }
 
   handleResize = () => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    this.setState({ mediaQuery });
+    if (this.matchMediaExists()) {
+      const mediaQuery = window.matchMedia("(min-width: 1024px)");
+      this.setState({ mediaQuery });
+    }
+  };
+
+  matchMediaExists = () => {
+    return window && window.matchMedia;
   };
 
   renderDetails = () => {
@@ -149,3 +157,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(RecipeDetails);
+
+export { RecipeDetails };
