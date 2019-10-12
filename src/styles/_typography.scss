@@ -1,11 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Palanquin|Palanquin+Dark:600|Roboto:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap");
 
-$heading: "Palanquin Dark", sans-serif;
-$sub-heading: "Palanquin", sans-serif;
+$heading: "Merriweather", serif;
+$sub-heading: "Roboto", sans-serif;
 $body: "Roboto", sans-serif;
 
 $heading-color: #282828;
-$body-color: #323232;
+$body-color: #555;
 
 h1,
 h2 {
@@ -21,7 +22,12 @@ h4 {
 
 h5,
 h6,
-p {
+p,
+li {
   font-family: $body;
   color: $body-color;
+}
+
+p {
+  line-height: 22px;
 }
