@@ -24,3 +24,8 @@ export const getRecipeSuccess = recipe => ({
 export const getRecipeFailure = () => ({
   type: "GET_RECIPE_FAILURE"
 });
+
+export const addToShoppingList = recipe => ({
+  type: "ADD_TO_SHOPPING_LIST",
+  recipe
+});

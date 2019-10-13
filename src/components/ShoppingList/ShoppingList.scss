@@ -1,0 +1,49 @@
+.shopping-list {
+  margin: 20px;
+
+}
+
+.view-shopping-list {
+  position: fixed;
+  right: 10px;
+  top: 20px;
+
+  cursor: pointer;
+
+  background-color: #84A59D;
+  padding: 20px;
+  border: none;
+  border-radius: 40px;
+
+  outline: none;
+
+  .icon {
+    font-size: 35px;
+
+    path {
+      fill: white;
+    }
+  }
+}
+
+.shopping-list-popup {
+  position: fixed;
+  right: 10px;
+  top: 100px;
+
+  max-width: 250px;
+
+  background-color: #84A59D;
+  padding: 20px;
+  border-radius: 10px;
+
+  .shopping-items {
+    padding-left: 0;
+
+    li {
+      list-style-type: none;
+      text-transform: capitalize;
+      margin-bottom: 10px;
+    }
+  }
+}

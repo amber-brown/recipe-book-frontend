@@ -14,7 +14,7 @@ import "./RecipeDetails.scss";
 import Ingredients from "../Ingredients";
 import Method from "../Method";
 
-import { getRecipe } from "../../actions";
+import { getRecipe, addToShoppingList } from "../../actions";
 
 class RecipeDetails extends React.Component {
   constructor(props) {
@@ -103,6 +103,7 @@ class RecipeDetails extends React.Component {
                 Serves: {recipe.serves}
               </p>
             </div>
+            <button className="add-to-shopping-list" onClick={() => this.props.addToShoppingList(recipe)}>Add Recipe to Shopping List</button>
           </div>
         </div>
         <div className="recipe-details">
@@ -130,6 +131,7 @@ class RecipeDetails extends React.Component {
 RecipeDetails.propTypes = {
   recipe: PropTypes.object,
   getRecipe: PropTypes.func,
+  addToShoppingList: PropTypes.func,
   recipeId: PropTypes.string
 };
 
@@ -146,7 +148,8 @@ mapDispatchToProps provides access to the dispatcher for sending actions
 through Redux.
 */
 const mapDispatchToProps = dispatch => ({
-  getRecipe: id => dispatch(getRecipe(id))
+  getRecipe: id => dispatch(getRecipe(id)),
+  addToShoppingList: recipe => dispatch(addToShoppingList(recipe))
 });
 
 /*
