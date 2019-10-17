@@ -17,9 +17,6 @@ const recipes = (state = [], action) => {
         return [...state, action.recipe];
       }
     }
-    case "ADD_TO_SHOPPING_LIST": {
-
-    }
     default:
       return state;
   }

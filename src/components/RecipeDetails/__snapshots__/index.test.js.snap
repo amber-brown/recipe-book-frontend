@@ -92,6 +92,12 @@ exports[`RecipeDetails renders correctly 1`] = `
           200
         </p>
       </div>
+      <button
+        className="add-to-shopping-list"
+        onClick={[Function]}
+      >
+        Add Recipe to Shopping List
+      </button>
     </div>
   </div>
   <div

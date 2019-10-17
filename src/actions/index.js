@@ -29,3 +29,8 @@ export const addToShoppingList = recipe => ({
   type: "ADD_TO_SHOPPING_LIST",
   recipe
 });
+
+export const deleteRecipeFromShoppingList = id => ({
+  type: "DELETE_RECIPE_FROM_SHOPPING_LIST",
+  id
+});

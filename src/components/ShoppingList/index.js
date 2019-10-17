@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { deleteRecipeFromShoppingList } from "../../actions";
+import { combineIngredients } from "../../helpers";
+
 import "./ShoppingList.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -33,19 +36,36 @@ class ShoppingList extends React.Component {
             <h2>Shopping List</h2>
             <div className="shopping-items-container">
               {Object.values(recipes).length ? (
-                <ul className="shopping-items">
-                  {Object.values(recipes).map((recipe, i) => (
-                    <li key={i}>
-                      <span>{recipe.count}</span>
-                      <Link to={`/recipe/${recipe._id}`}>
-                        <span>{recipe.title}</span>
-                      </Link>
-                      <span>
-                        <FontAwesomeIcon icon={faTrashAlt} className="icon" />
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+                <React.Fragment>
+                  <ul className="shopping-items-recipes">
+                    {Object.values(recipes).map((recipe, i) => (
+                      <li key={i}>
+                        <span>{recipe.count}</span>
+                        <Link to={`/recipe/${recipe._id}`}>
+                          <span>{recipe.title}</span>
+                        </Link>
+                        <span>
+                          <FontAwesomeIcon
+                            icon={faTrashAlt}
+                            onClick={() =>
+                              this.props.deleteRecipeFromShoppingList(
+                                recipe._id
+                              )
+                            }
+                            className="icon"
+                          />
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <ul className="shopping-items">
+                    {combineIngredients(recipes).map((ingredient, i) => (
+                      <li key={i}>
+                        {`${ingredient.quantity} ${ingredient.unit} ${ingredient.name}`}
+                      </li>
+                    ))}
+                  </ul>
+                </React.Fragment>
               ) : (
                 <p>There are no items in the shopping list</p>
               )}
@@ -58,7 +78,8 @@ class ShoppingList extends React.Component {
 }
 
 ShoppingList.propTypes = {
-  recipes: PropTypes.object
+  recipes: PropTypes.object,
+  deleteRecipeFromShoppingList: PropTypes.func
 };
 
 /*
@@ -70,9 +91,20 @@ const mapStateToProps = state => ({
 });
 
 /*
+mapDispatchToProps provides access to the dispatcher for sending actions
+through Redux.
+*/
+const mapDispatchToProps = dispatch => ({
+  deleteRecipeFromShoppingList: id => dispatch(deleteRecipeFromShoppingList(id))
+});
+
+/*
 connect() runs the above function and gives the result to App -
 It connects the app to the store.
 */
-export default connect(mapStateToProps)(ShoppingList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingList);
 
 export { ShoppingList };

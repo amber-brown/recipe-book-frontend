@@ -57,3 +57,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(RecipeList);
+
+export { RecipeList };
