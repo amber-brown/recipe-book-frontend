@@ -24,7 +24,8 @@ class RecipeDetails extends React.Component {
       openTab: "INGREDIENTS",
       mediaQuery: this.matchMediaExists()
         ? window.matchMedia("(min-width: 1024px)")
-        : {}
+        : {},
+      addedAnimation: false
     };
   }
 
@@ -41,6 +42,13 @@ class RecipeDetails extends React.Component {
     if (this.matchMediaExists()) {
       const mediaQuery = window.matchMedia("(min-width: 1024px)");
       this.setState({ mediaQuery });
+    }
+  };
+
+  addedItemToShoppingList = () => {
+    if (!this.state.addedAnimation) {
+      this.setState({ addedAnimation: true });
+      setTimeout(() => this.setState({ addedAnimation: false }), 300);
     }
   };
 
@@ -77,6 +85,10 @@ class RecipeDetails extends React.Component {
       active: this.state.openTab === "METHOD"
     });
 
+    const addToShoppingListClasses = classNames("add-to-shopping-list", {
+      "added-animation": this.state.addedAnimation
+    });
+
     if (!recipe) {
       return <p>Loading</p>;
     }
@@ -103,7 +115,15 @@ class RecipeDetails extends React.Component {
                 Serves: {recipe.serves}
               </p>
             </div>
-            <button className="add-to-shopping-list" onClick={() => this.props.addToShoppingList(recipe)}>Add Recipe to Shopping List</button>
+            <button
+              className={addToShoppingListClasses}
+              onClick={() => {
+                this.props.addToShoppingList(recipe);
+                this.addedItemToShoppingList();
+              }}
+            >
+              Add Recipe to Shopping List
+            </button>
           </div>
         </div>
         <div className="recipe-details">

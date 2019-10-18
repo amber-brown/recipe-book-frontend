@@ -7,6 +7,20 @@
     grid-template-columns: 1fr 1fr;
   }
 
+  @keyframes added-animation {
+    from {
+      background-color: $light-purple;
+    }
+    to {
+      background-color: $purple;
+    }
+  }
+  .added-animation {
+    animation-name: added-animation;
+    animation-duration: 300ms;
+    animation-timing-function: ease-in-out;
+  }
+
   .recipe-intro {
     background-color: #ccc;
     background-position: center;
