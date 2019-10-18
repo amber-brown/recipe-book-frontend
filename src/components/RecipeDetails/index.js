@@ -14,7 +14,7 @@ import "./RecipeDetails.scss";
 import Ingredients from "../Ingredients";
 import Method from "../Method";
 
-import { getRecipe } from "../../actions";
+import { getRecipe, addToShoppingList } from "../../actions";
 
 class RecipeDetails extends React.Component {
   constructor(props) {
@@ -24,7 +24,8 @@ class RecipeDetails extends React.Component {
       openTab: "INGREDIENTS",
       mediaQuery: this.matchMediaExists()
         ? window.matchMedia("(min-width: 1024px)")
-        : {}
+        : {},
+      addedAnimation: false
     };
   }
 
@@ -41,6 +42,13 @@ class RecipeDetails extends React.Component {
     if (this.matchMediaExists()) {
       const mediaQuery = window.matchMedia("(min-width: 1024px)");
       this.setState({ mediaQuery });
+    }
+  };
+
+  addedItemToShoppingList = () => {
+    if (!this.state.addedAnimation) {
+      this.setState({ addedAnimation: true });
+      setTimeout(() => this.setState({ addedAnimation: false }), 300);
     }
   };
 
@@ -77,6 +85,10 @@ class RecipeDetails extends React.Component {
       active: this.state.openTab === "METHOD"
     });
 
+    const addToShoppingListClasses = classNames("add-to-shopping-list", {
+      "added-animation": this.state.addedAnimation
+    });
+
     if (!recipe) {
       return <p>Loading</p>;
     }
@@ -103,6 +115,15 @@ class RecipeDetails extends React.Component {
                 Serves: {recipe.serves}
               </p>
             </div>
+            <button
+              className={addToShoppingListClasses}
+              onClick={() => {
+                this.props.addToShoppingList(recipe);
+                this.addedItemToShoppingList();
+              }}
+            >
+              Add Recipe to Shopping List
+            </button>
           </div>
         </div>
         <div className="recipe-details">
@@ -130,6 +151,7 @@ class RecipeDetails extends React.Component {
 RecipeDetails.propTypes = {
   recipe: PropTypes.object,
   getRecipe: PropTypes.func,
+  addToShoppingList: PropTypes.func,
   recipeId: PropTypes.string
 };
 
@@ -146,7 +168,8 @@ mapDispatchToProps provides access to the dispatcher for sending actions
 through Redux.
 */
 const mapDispatchToProps = dispatch => ({
-  getRecipe: id => dispatch(getRecipe(id))
+  getRecipe: id => dispatch(getRecipe(id)),
+  addToShoppingList: recipe => dispatch(addToShoppingList(recipe))
 });
 
 /*

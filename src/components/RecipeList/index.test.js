@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import renderer from "react-test-renderer";
-import Component from "./index.js";
+import { BrowserRouter as Router } from "react-router-dom";
+import { RecipeList } from "./index.js";
 
 const recipes = [
   {
@@ -21,12 +22,23 @@ const recipes = [
 describe("RecipeList", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDOM.render(<Component recipes={recipes} />, div);
+    ReactDOM.render(
+      <Router>
+        <RecipeList getAllRecipes={() => {}} recipes={recipes} />
+      </Router>,
+      div
+    );
     ReactDOM.unmountComponentAtNode(div);
   });
 
   it("renders correctly", () => {
-    const tree = renderer.create(<Component recipes={recipes} />).toJSON();
+    const tree = renderer
+      .create(
+        <Router>
+          <RecipeList getAllRecipes={() => {}} recipes={recipes} />
+        </Router>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });

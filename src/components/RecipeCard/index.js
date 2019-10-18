@@ -2,8 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStopwatch } from "@fortawesome/free-solid-svg-icons";
-import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
+import { faStopwatch, faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import "./RecipeCard.scss";
 
 export default class RecipeCard extends React.Component {
