@@ -1,3 +1,4 @@
+@import "styles/variables";
 @import "styles/typography";
 
 body {
@@ -13,8 +14,15 @@ img {
   display: block;
 }
 
-header {
+.App {
+  padding-top: 60px;
+}
 
+header {
   height: 60px;
-  background-color: #B8BEDD;
+  background-color: $darkest-purple;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  top: 0;
 }

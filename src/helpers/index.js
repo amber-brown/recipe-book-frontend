@@ -22,3 +22,15 @@ export const combineIngredients = recipes => {
 
   return Object.values(ingredients);
 };
+
+export const convertUnits = ingredient => {
+  const { quantity, unit } = ingredient;
+  const units = {
+    g: "kg",
+    ml: "l"
+  };
+
+  return quantity >= 1000 && Object.keys(units).includes(unit)
+    ? { ...ingredient, quantity: quantity / 1000, unit: units[unit] }
+    : ingredient;
+};

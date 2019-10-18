@@ -1,4 +1,4 @@
-import { combineIngredients } from "./index.js";
+import { combineIngredients, convertUnits } from "./index.js";
 
 describe("helpers", () => {
   describe("#combineIngredients", () => {
@@ -29,9 +29,46 @@ describe("helpers", () => {
       ]);
     });
   });
+  describe("#convertUnits", () => {
+    it("should convert to the most appropriate unit", () => {
+      const ingredient1 = {
+        unit: "g",
+        quantity: 100
+      };
+      const ingredient2 = {
+        unit: "g",
+        quantity: 1200
+      };
+      const ingredient3 = {
+        unit: "ml",
+        quantity: 100
+      };
+      const ingredient4 = {
+        unit: "ml",
+        quantity: 1300
+      };
+      expect(convertUnits(ingredient1)).toEqual(ingredient1);
+      expect(convertUnits(ingredient2)).toEqual({
+        unit: "kg",
+        quantity: 1.2
+      });
+      expect(convertUnits(ingredient3)).toEqual(ingredient3);
+      expect(convertUnits(ingredient4)).toEqual({
+        unit: "l",
+        quantity: 1.3
+      });
+    });
+    it("should return the ingredient if the unit cannot be converted", () => {
+      const ingredient5 = {
+        unit: "cups",
+        quantity: 13
+      };
+      const ingredient6 = {
+        unit: "cups",
+        quantity: 1300000
+      };
+      expect(convertUnits(ingredient5)).toEqual(ingredient5);
+      expect(convertUnits(ingredient6)).toEqual(ingredient6);
+    });
+  });
 });
-
-//get a list of recipe ingredients
-//check if the ingredient exists
-// if yes, combine the totals
-// else add to the ingredients list as new ingredient

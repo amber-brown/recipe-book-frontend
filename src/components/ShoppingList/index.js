@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { deleteRecipeFromShoppingList } from "../../actions";
-import { combineIngredients } from "../../helpers";
+import { combineIngredients, convertUnits } from "../../helpers";
 
 import "./ShoppingList.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,14 +37,20 @@ class ShoppingList extends React.Component {
             <div className="shopping-items-container">
               {Object.values(recipes).length ? (
                 <React.Fragment>
+                  <h4>Recipes Included:</h4>
                   <ul className="shopping-items-recipes">
                     {Object.values(recipes).map((recipe, i) => (
-                      <li key={i}>
-                        <span>{recipe.count}</span>
-                        <Link to={`/recipe/${recipe._id}`}>
+                      <li key={i} className="shopping-items-recipe">
+                        <span className="shopping-items-recipe__count">
+                          {`${recipe.count} x`}
+                        </span>
+                        <Link
+                          to={`/recipe/${recipe._id}`}
+                          className="shopping-items-recipe__title"
+                        >
                           <span>{recipe.title}</span>
                         </Link>
-                        <span>
+                        <span className="shopping-items-recipe__delete">
                           <FontAwesomeIcon
                             icon={faTrashAlt}
                             onClick={() =>
@@ -58,12 +64,23 @@ class ShoppingList extends React.Component {
                       </li>
                     ))}
                   </ul>
+                  <h4>Ingredients:</h4>
                   <ul className="shopping-items">
-                    {combineIngredients(recipes).map((ingredient, i) => (
-                      <li key={i}>
-                        {`${ingredient.quantity} ${ingredient.unit} ${ingredient.name}`}
-                      </li>
-                    ))}
+                    {combineIngredients(recipes)
+                      .map(convertUnits)
+                      .map((ingredient, i) => (
+                        <li key={i} className="shopping-item">
+                          <span className="shopping-item__quantity">
+                            {ingredient.quantity}
+                          </span>
+                          <span className="shopping-item__unit">
+                            {ingredient.unit}{" "}
+                          </span>
+                          <span className="shopping-item__name">
+                            {ingredient.name}
+                          </span>
+                        </li>
+                      ))}
                   </ul>
                 </React.Fragment>
               ) : (
