@@ -15,9 +15,8 @@ export default class Ingredients extends React.Component {
             .map(convertUnits)
             .map(({ quantity, unit, name, preparation }, i) => (
               <li className="ingredient" key={i}>
-                <span className="ingredient-measurement">
-                  {quantity} {unit}{" "}
-                </span>
+                <span className="ingredient-measurement">{quantity}</span>
+                <span>{unit} </span>
                 <span>
                   {name}
                   {preparation ? `, ${preparation}` : null}
